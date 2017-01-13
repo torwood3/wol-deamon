@@ -1,0 +1,28 @@
+<footer>
+    <span id="version"> v<%-app.version %></span>
+</footer>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+<script>
+    function post(route) {
+        if (confirm('Please confirm')) {
+            $.get(route)
+                .fail(function (jqXHR) {
+                    if (jqXHR.status === 0) return alert('Can\'t connect to server')
+                    alert(jqXHR.responseJSON.error)
+                })
+        }
+    }
+    $('#power-off').on('click', function () {
+        post('/power-off')
+    })
+
+    $.get('update', function (update) {
+        if (update.type && update.type === 'latest') {
+            $('footer a').append(' (new version available)')
+        }
+    })
+</script>
+
+</body>
+</html>
