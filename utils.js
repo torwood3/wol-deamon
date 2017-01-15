@@ -47,8 +47,10 @@ var getLocalNetworkInfos = function () {
 var getActiveInterface = function () {
 	var localIPs = getLocalNetworkInfos();
 	for( var i = 0; i < localIPs.length; i++){
-		if(localIPs[i].IPv4.indexOf("192.168") != -1)
+		if(localIPs[i].IPv4.indexOf("192.168") != -1) {
+			console.log(localIPs[i]);
 			return localIPs[i];
+		}
 	}
 }
 
