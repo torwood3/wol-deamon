@@ -14,11 +14,9 @@ router.get('/poweroff', function(req, res){
 	powerOff( function (err, stderr, stdout) {
 		if(!err && !stderr) {
 			console.log(stdout);
-			res.status(500).json({ error: 'Can\'t run poweroff' })
-		} else {
-			res.end()
 		}
 	});
+	res.end();
 });
 
 /* GET os uptime */
