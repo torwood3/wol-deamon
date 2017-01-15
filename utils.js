@@ -44,7 +44,7 @@ var getLocalNetworkInfos = function () {
 	return localIPInfo;
 };
 
-module.exports.getActiveInterface = function () {
+var getActiveInterface = function () {
 	var localIPs = getLocalNetworkInfos()
 		localIPs.forEach(function(interface, index){
 			if(localIPs[interface].IPv4.indexOf("192.168") != -1)
