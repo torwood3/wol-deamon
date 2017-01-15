@@ -46,11 +46,9 @@ var getLocalNetworkInfos = function () {
 
 var getActiveInterface = function () {
 	var localIPs = getLocalNetworkInfos();
-	console.log(localIPs);
 
-	for( var i = 0; i < localIPs.length; i++){
+	for(var i in localIPs) {
 		if(localIPs[i].IPv4.indexOf("192.168") != -1) {
-			console.log(localIPs[i]);
 			return localIPs[i];
 		}
 	}
