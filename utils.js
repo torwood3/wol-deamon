@@ -1,6 +1,7 @@
 /**
  * Created by pamas on 14/01/2017.
  */
+var process = require('process');
 
 /**
  * Collects information about the local IPv4/IPv6 addresses of
@@ -10,6 +11,7 @@
  * For example you can use getLocalNetworkInfos().eth0.IPv6 to get the IPv6 address
  * (as string) of eth0
  */
+
 var getLocalNetworkInfos = function () {
 	var addrInfo, ifaceDetails, _len;
 	var localIPInfo = {};
@@ -46,6 +48,9 @@ var getLocalNetworkInfos = function () {
 
 var getActiveInterface = function () {
 	var localIPs = getLocalNetworkInfos();
+
+	if (process.env.DOCKER_HOST_IP)
+		return process.env.DOCKER_HOST_IP;
 
 	for(var i in localIPs) {
 		if(localIPs[i].IPv4.indexOf("192.168") != -1) {
