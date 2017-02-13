@@ -1,10 +1,8 @@
 #!/usr/bin/env node
 var app = require('../app');
-var polo = require('polo');
 var pkg = require('../package.json');
 var os = require("os");
 var utils = require("../utils.js");
-var pool = polo();
 
 app.set('port', process.env.PORT || 3000);
 
@@ -14,13 +12,5 @@ var server = app.listen(app.get('port'), function() {
 	var interface = utils.getActiveInterface();
 
   console.log('Wol daemon listening on :' + server.address().port);
-	if(/^win/.test(os.platform())) return;
-
-	pool.put({
-		name: "wol-" + os.hostname(), // required - the name of the service
-		ip: interface.IPv4,
-		mac: interface.mac,
-		port: port          // we are listening on port 8080.
-	});
 });
 

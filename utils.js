@@ -1,7 +1,6 @@
 /**
  * Created by pamas on 14/01/2017.
  */
-var process = require('process');
 
 /**
  * Collects information about the local IPv4/IPv6 addresses of
