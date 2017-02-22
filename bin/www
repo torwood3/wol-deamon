@@ -1,16 +1,35 @@
 #!/usr/bin/env node
 var app = require('../app');
 var pkg = require('../package.json');
-var os = require("os");
+var os = require('os');
+var fs = require('fs');
+var powerOff = require('power-off');
 var utils = require("../utils.js");
 
 app.set('port', process.env.PORT || 3000);
 
 var server = app.listen(app.get('port'), function() {
-
-	var port = server.address().port;
-	var interface = utils.getActiveInterface();
-
+  var port = server.address().port;
   console.log('Wol daemon listening on :' + server.address().port);
 });
 
+if (os.uptime() < 60) {
+  var file = 'wol-deamon.lock';
+  //Le serveur vient de redémarrer
+  if (fs.existsSync(file)) {
+    fs.readFile(file, (err, data) => {
+      if (err) throw err;
+      var lastStart = data;
+      if (lastStart != '') {
+        if( parseInt((new Date() - new Data(lastStart)) / 1000) < 60) {
+          powerOff( function (err, stderr, stdout) {
+            if(!err && !stderr) {
+              console.log(stdout);
+            }
+          });
+        }
+      }
+    });
+  }
+  fs.writeSync(file,'');
+}
