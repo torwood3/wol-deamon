@@ -6,6 +6,12 @@
             $.get(route)
                 .fail(function (jqXHR) {
                     if (jqXHR.status === 0) return alert('Can\'t connect to server')
+                    if (jqXHR.status === 200) {
+                    	$(".alert").show();
+                    	setTimeout(function() {
+                    		$('.alert').hide();
+                        }, 5000);
+                    }
                     console.log(jqXHR);
                 })
         }
@@ -13,7 +19,6 @@
     $('#power-off').on('click', function () {
         post('/api/poweroff');
     })
-
     /*
     $.get('update', function (update) {
         if (update.type && update.type === 'latest') {
