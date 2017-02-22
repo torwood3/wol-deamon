@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+var fs = require('fs');
 var os = require('os');
 var powerOff = require('power-off');
 
@@ -11,7 +11,7 @@ router.get('/', function(req, res) {
 
 /* Get poweroff */
 router.get('/poweroff', function(req, res){
-  var file = '../bin/wol-deamon.lock';
+  var file = './wol-deamon.lock';
   fs.writeFile(file, (new Date().getTime()).toString(), (err) => {
     if (err) throw err;
     powerOff( function (err, stderr, stdout) {

@@ -15,11 +15,9 @@ TODO
 
 * [NodeJS](https://nodejs.org/) and [ExpressJS](http://expressjs.com/) - The web framework used
 * [NPM](https://npmjs.com/) - Dependency Management
-* [Polo](https://www.npmjs.com/package/polo) - Service Discovery
 ######Continous Integration with Jenkins
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
   
-  
-Jenkins 2
+ 

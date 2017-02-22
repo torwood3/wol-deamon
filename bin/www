@@ -13,15 +13,16 @@ var server = app.listen(app.get('port'), function() {
   console.log('Wol daemon listening on :' + server.address().port);
 });
 
+
+var file = './wol-deamon.lock';
 if (os.uptime() < 60) {
-  var file = 'wol-deamon.lock';
   //Le serveur vient de redémarrer
   if (fs.existsSync(file)) {
     fs.readFile(file, (err, data) => {
       if (err) throw err;
       var lastStart = data;
-      if (lastStart != '') {
-        if( parseInt((new Date() - new Data(lastStart)) / 1000) < 60) {
+	    if (lastStart != '') {
+        if( parseInt((new Date() - new Date(parseInt(lastStart,10))) / 1000) < 60) {
           powerOff( function (err, stderr, stdout) {
             if(!err && !stderr) {
               console.log(stdout);
@@ -29,7 +30,10 @@ if (os.uptime() < 60) {
           });
         }
       }
+	    fs.writeFileSync(file,'');
     });
-  }
-  fs.writeSync(file,'');
+  } else {
+  	console.log("file nope");
+	  fs.writeFileSync(file,'');
+	}
 }

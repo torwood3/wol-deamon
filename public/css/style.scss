@@ -1,8 +1,8 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  width: 100%;
 }
 
-a {
-  color: #00B7FF;
+.container {
+  display: table;
+  margin: 0 auto;
 }
